@@ -1,3 +1,4 @@
+//Client GUI
 package client;
 
 import java.awt.CardLayout;
