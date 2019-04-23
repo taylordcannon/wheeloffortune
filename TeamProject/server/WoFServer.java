@@ -1,6 +1,6 @@
 package server;
 
-//Ray: Look at comments for TODOs and information regarding changes
+
 
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
