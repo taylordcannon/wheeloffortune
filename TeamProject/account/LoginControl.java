@@ -7,6 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import client.WoFClient;
+import game.PhraseData;
 
 import java.awt.event.*;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class LoginControl implements ActionListener {
 						client.sendToServer("Need Question");
 						Thread.sleep(500);
 					} catch (IOException | InterruptedException e) {e.printStackTrace();}
-					
+					 
 					PhraseData toSend = (PhraseData)client.getServerMsg();
 					UpdateGUI(toSend);
 					CardLayout cl = (CardLayout)container.getLayout();
@@ -83,9 +84,9 @@ public class LoginControl implements ActionListener {
    	 if(Decider) lp.hideButtons();
    	}
   /*
-  public void UpdateGUI(QuestionData UA) {
-	QuestionsPanel qp = (QuestionsPanel)container.getComponent(2);
-	qp.setQData(UA);
+  public void UpdateGUI(PhraseData UA) {
+	PhrasePanel pp = (PhrasePanel)container.getComponent(2);
+	pp.setQData(UA);
 	}
 	*/
   }
