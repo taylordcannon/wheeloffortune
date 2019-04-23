@@ -1,10 +1,20 @@
 //Client GUI
 package client;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import account.CreateAccount;
+import account.CreateAccountControl;
+import account.LoginControl;
+import account.LoginPanel;
+import game.EndGameControl;
+import game.EndGamePanel;
+import game.PhraseControl;
+import game.PhrasePanel;
 
 public class ClientGUI extends JFrame {
 	
@@ -24,16 +34,16 @@ public class ClientGUI extends JFrame {
 		CardLayout cardLayout = new CardLayout();
 		JPanel container = new JPanel(cardLayout);
 		
-		/*To be made classes...
+		
 		
 		LoginControl lc = new LoginControl(container, client);
 		CreateAccountControl ca = new CreateAccountControl(container, client);
 		PhraseControl pc = new PhraseControl(container, client);
-		EndGameSSControl egp = new EndGameSSControl(container, client);
+		EndGameControl egp = new EndGameControl(container, client);
 		
 		JPanel view1 = new LoginPanel(lc);
 		JPanel view2 = new CreateAccount(ca); 
-		JPanel view3 = new PhrasePanel(pp); 
+		JPanel view3 = new PhrasePanel(pc); 
 		JPanel view4 = new EndGamePanel(egp); 
 		
 		container.add(view1, "1");
@@ -42,13 +52,13 @@ public class ClientGUI extends JFrame {
 		container.add(view4, "4");
 		
 		CardLayout cl = (CardLayout)container.getLayout();
-		cl.show(container, "1")
+		cl.show(container, "1");
 		
 		this.add(container, BorderLayout.CENTER);
 		
 		this.setSize(500, 300);
 		this.setVisible(true);
-		*/		
+				
 	}
 	
 	public static void main(String[] args) {
