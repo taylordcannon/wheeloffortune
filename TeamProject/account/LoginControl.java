@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import client.WoFClient;
 import game.PhraseData;
+import game.PhrasePanel;
 
 import java.awt.event.*;
 import java.io.IOException;
@@ -83,10 +84,10 @@ public class LoginControl implements ActionListener {
    	 lp.setErrorMsg(error);
    	 if(Decider) lp.hideButtons();
    	}
-  /*
+  
   public void UpdateGUI(PhraseData UA) {
 	PhrasePanel pp = (PhrasePanel)container.getComponent(2);
-	pp.setQData(UA);
+	pp.setPhraseData(UA);
 	}
-	*/
+	
   }
