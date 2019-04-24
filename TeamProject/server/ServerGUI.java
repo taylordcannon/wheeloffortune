@@ -1,5 +1,9 @@
 package server;
 
+import account.*;
+import client.*;
+import game.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,7 +30,7 @@ public class ServerGUI extends JFrame {
 	private WoFServer server;
 	private boolean serverStarted = false;
 	
-	private JLabel status;	//Initialized to “Not Connected”
+	private JLabel status;
 	private String[] labels = {"Port #", "Timeout"};
 	private JTextField[] textFields = new JTextField[labels.length];
 	private JTextArea log;
@@ -161,15 +165,12 @@ public class ServerGUI extends JFrame {
 			}
 			else if(input == "stop") {stop();}
 			else if(input == "quit") {quit();}
-			//else if(input == "start") {start();}
 		}
 		
 	  }
 	
 	public void listen() throws IOException
-	{
-		//System.out.println("Listen Button Pressed");
-		
+	{		
 		if(textFields[0].getText().equals("") || textFields[0].getText().equals(""))
 		{
 			log.append("Port Number/timeout not entered before pressing Listen\n");
@@ -193,7 +194,6 @@ public class ServerGUI extends JFrame {
 	
 	public void close() throws IOException
 	{
-		//System.out.println("Close Button Pressed");
 		if(!serverStarted)
 		{
 			log.append("Server not currently started\n");
@@ -208,7 +208,6 @@ public class ServerGUI extends JFrame {
 	
 	public void stop()
 	{
-		//System.out.println("Stop Button Pressed");
 		if(!serverStarted)
 		{
 			log.append("Server not currently started\n");
@@ -221,7 +220,6 @@ public class ServerGUI extends JFrame {
 	
 	public void quit()
 	{
-		//System.out.println("Quit Button Pressed");
 		System.exit(0);
 	}
 	

@@ -1,5 +1,8 @@
-//This manages the information sent to and from the server after a session has ended
 package game;
+
+import account.*;
+import client.*;
+import server.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

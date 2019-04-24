@@ -1,5 +1,9 @@
 package account;
 
+import client.*;
+import server.*;
+import game.*;
+
 import java.io.Serializable;
 
 public class LoginData implements Serializable{

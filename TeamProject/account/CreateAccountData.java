@@ -1,6 +1,10 @@
 //Create Account Data
 package account;
 
+import client.*;
+import server.*;
+import game.*;
+
 import java.io.Serializable;
 
 public class CreateAccountData implements Serializable{

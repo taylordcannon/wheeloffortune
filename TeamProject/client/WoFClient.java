@@ -1,6 +1,10 @@
 //Client
 package client;
 
+import account.*;
+import server.*;
+import game.*;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 

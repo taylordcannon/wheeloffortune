@@ -1,7 +1,8 @@
-//This manages the information related to clients login
-//This looks mostly done
-
 package account;
+
+import client.*;
+import server.*;
+import game.*;
 
 import java.awt.*;
 import javax.swing.*;
@@ -64,7 +65,6 @@ public class LoginControl implements ActionListener {
 		} catch (IOException e1) {e1.printStackTrace();}  
 	      catch (InterruptedException e) {e.printStackTrace();}
 	    	String toCompare = (String)client.getServerMsg();
-	    	//if(toCompare.equals("Success")) {
 		    	try {
 		    		client.openConnection();
 		    		client.sendToServer("Ready");
@@ -72,11 +72,11 @@ public class LoginControl implements ActionListener {
 		    		Thread TH = new Thread(new WaitingThread()); 
 		    		TH.start();
 		    		isPressed = true;
-		    	} catch(IOException e) {displayError("Server Connection Failure!", false);}
+		    	} catch(IOException e) {
+		    		displayError("Server Connection Failure!", false);
+		    		}
 	    		
-	    	/*} else if(toCompare.equals("Incorrect Username or Password!")) {
-	    		displayError("Incorrect Username or Password!", false);
-	    	}*/
+	    	
 	 }}
     
   public void displayError(String error, boolean Decider) {

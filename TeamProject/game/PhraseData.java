@@ -1,5 +1,9 @@
 package game;
 
+import account.*;
+import client.*;
+import server.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

@@ -1,6 +1,10 @@
 //Create Account Control
 package account;
 
+import client.*;
+import server.*;
+import game.*;
+
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

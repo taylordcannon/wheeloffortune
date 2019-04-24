@@ -1,5 +1,9 @@
 package game;
 
+import account.*;
+import client.*;
+import server.*;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,7 +63,6 @@ public class EndGamePanel extends JPanel {
 		playButton.setPreferredSize(new Dimension(30,30));
 		playButton.addActionListener(egs);
 
-		//addContact.setBounds(161, 168, 120, 50);
 		
 		this.add(inner);
 		}

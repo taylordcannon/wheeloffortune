@@ -1,5 +1,9 @@
 package account;
 
+import client.*;
+import server.*;
+import game.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;

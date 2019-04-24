@@ -1,5 +1,8 @@
-//Create Account
 package account;
+
+import client.*;
+import server.*;
+import game.*;
 
 import java.awt.Color;
 import java.awt.GridLayout;

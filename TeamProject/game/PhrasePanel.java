@@ -1,5 +1,9 @@
 package game;
 
+import account.*;
+import client.*;
+import server.*;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -21,7 +25,6 @@ public class PhrasePanel extends JPanel{
 	JRadioButton choicea;
 	JRadioButton choiceb;
 	JRadioButton choicec;
-	
 	ButtonGroup grp;
 	
 	int i = 0;

@@ -1,5 +1,8 @@
-//This manages the QuestionData between the client and servers
 package game;
+
+import account.*;
+import client.*;
+import server.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

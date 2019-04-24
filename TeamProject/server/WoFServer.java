@@ -1,5 +1,8 @@
 package server;
 
+import account.*;
+import client.*;
+import game.*;
 
 
 import ocsf.server.AbstractServer;
@@ -25,30 +28,25 @@ public class WoFServer extends AbstractServer
   private JTextArea log;
   private JLabel status;
   private Database database;
-  private ArrayList<ArrayList<String>> ClientList;			//Tracks client names and statuses
-  private ArrayList<Integer> ClientScores;					//Tracks clients scores
-  private ArrayList<PhraseData> Questions;				//Storage for questions
-  private int QuestionNumber;								//Value to track question number
+  private ArrayList<ArrayList<String>> ClientList;			
+  private ArrayList<Integer> ClientScores;					
+  private ArrayList<PhraseData> phrases;				    
+  private int QuestionNumber;
   
   public WoFServer() throws FileNotFoundException {
     super(8300);
-    database = new Database();
+ 
     ClientList = new ArrayList<ArrayList<String>>();
     new ArrayList<ConnectionToClient>();
     ClientScores = new ArrayList<Integer>();
-    Questions = new ArrayList<PhraseData>();
+    phrases = new ArrayList<PhraseData>();
     QuestionNumber = 0;
     
-    //TODO: This portion needs to include data from the text file
-    //Phrases needs to include every PhraseData object 
-    //Uncommenting the bit below this will run 2 generic phrases
-    //This can be run to test the model without the actual data
-    
-    FileReader in = new FileReader("Questions.txt");
+    FileReader in = new FileReader("WoF.txt");
     BufferedReader br = new BufferedReader(in);
     
     String string;
-    PhraseData qd = new PhraseData();
+    PhraseData phrasedata = new PhraseData();
     ArrayList<String> answers = new ArrayList<String>();
     ArrayList<String> questions=new ArrayList<String>();
     ArrayList<String> rightAnswers = new ArrayList<String>();
@@ -59,7 +57,6 @@ public class WoFServer extends AbstractServer
 			if (string.contains("?"))
 			{
 				questions.add(string);
-				//System.out.println(string);
 				
 			}
 			else
@@ -69,24 +66,24 @@ public class WoFServer extends AbstractServer
 					rightAnswers.add(string.replace("$", ""));
 					//System.out.println(qd.getRightAnswer());
 					answers.add(string.replace("$", ""));
-					qd.setRightAnswers(rightAnswers);
+					phrasedata.setRightAnswers(rightAnswers);
 				}
 				else
 				{
 					answers.add(string);
-					qd.setAnswers(answers);
+					phrasedata.setAnswers(answers);
 				}
 			}
 			
 				//qd.setQuestions(questions);
-				Questions.add(qd);
+				phrases.add(phrasedata);
 			
 			
 		}
 		System.out.println(answers);
-		System.out.println(qd.getRightAnswers());
+		System.out.println(phrasedata.getRightAnswers());
 		
-		qd.setQuestions(questions);
+		phrasedata.setQuestions(questions);
 	
 		    
 		    
@@ -102,27 +99,7 @@ public class WoFServer extends AbstractServer
 		e.printStackTrace();
 	}
 	
-   /* PhraseData tester = new PhraseData();
-    tester.setQuestion("This is a test question!");
-    
-    ArrayList<String> tosetA = new ArrayList<String>();
-    tosetA.add("A)This is a test answer A");
-    tosetA.add("B)This is a test answer B");
-    tosetA.add("C)This is a test answer C");
-    tester.setAnswers(tosetA);
-    tester.setRightAnswer("B)This is a test answer B");
-    Questions.add(tester);
-    
-    PhraseData tester2 = new PhraseData();
-    tester2.setQuestion("This is a test question2!");
-    
-    ArrayList<String> tosetA2 = new ArrayList<String>();
-    tosetA2.add("A)This is a test answer A");
-    tosetA2.add("B)This is a test answer B");
-    tosetA2.add("C)This is a test answer C");
-    tester2.setAnswers(tosetA2);
-    tester2.setRightAnswer("B)This is a test answer B");
-    Questions.add(tester2);*/
+   
   }
   
   public void setDataBase(Database database) {
@@ -154,13 +131,15 @@ public class WoFServer extends AbstractServer
     if (arg0 instanceof LoginData) {
        LoginData ld = (LoginData)arg0;
        String un = ld.getUserName(); String pass = ld.getPassword();
+       
+       /*//////////////////////////////////////////////////////////////////
        ArrayList<String> validUserInfo = database.query("select username, password from users where username = '" + un + "';");
        if(un.equals(validUserInfo.get(0)) && pass.equals(validUserInfo.get(1))) {
     	   try {
-    		   ClientList.add(new ArrayList<String>());						//Pushes blank arraylist onto 2d arraylist (new client)
-    		   ClientList.get(ClientList.size()-1).add(ld.getUserName());	//Sets the user's name to their name in the database
-    		   ClientList.get(ClientList.size()-1).add("Not Ready");		//Sets this user's status to not ready  
-    		   ClientScores.add(0); 										//Sets this users score to 0 by default
+    		   ClientList.add(new ArrayList<String>());						
+    		   ClientList.get(ClientList.size()-1).add(ld.getUserName());	
+    		   ClientList.get(ClientList.size()-1).add("Not Ready");		
+    		   ClientScores.add(0); 										
     		   arg1.sendToClient("Success");  
     	   }
     	   catch(IOException e) {
@@ -173,12 +152,13 @@ public class WoFServer extends AbstractServer
     	   catch(IOException e) {
     		   e.printStackTrace();
     	   }}
-       
+       *///////////////////////////////////////////////////////////////////       
        //This portion commented out below is tester data in the case the databse isn't working
        //Commenting out the database code above and uncommenting this allows for testing without the database
        //This is assuming you click the login button instead of the create account button
-       //Attempting to submit an account to the database will result in a crash without the database available
-    	/*try {
+       //Attempting to submit an account to the database will result in a crash without the database available       
+       /////////////////////////////////////////////////////////////////////
+       try {
  		   ClientList.add(new ArrayList<String>());						
  		   ClientList.get(ClientList.size()-1).add("Tester Username");			
  		   ClientList.get(ClientList.size()-1).add("Not Ready");		
@@ -191,6 +171,7 @@ public class WoFServer extends AbstractServer
        }
     }
     
+    
     else if (arg0 instanceof CreateAccountData) {
        CreateAccountData cad = (CreateAccountData)arg0;
        String holder = "insert into users values('" + cad.getUserName().toString() + "','" + cad.getPassword().toString() + "');";
@@ -198,10 +179,10 @@ public class WoFServer extends AbstractServer
        
        if(validUserInfo) {
     	   try {
-    		   ClientList.add(new ArrayList<String>());						//Pushes blank arraylist onto 2d arraylist (new client)
-    		   ClientList.get(ClientList.size()-1).add(cad.getUserName());	//Sets the user's name to their name in the database
-    		   ClientList.get(ClientList.size()-1).add("Not Ready");		//Sets this user's status to not ready
-    		   ClientScores.add(0); 										//Sets this users score to 0 by default
+    		   ClientList.add(new ArrayList<String>());						
+    		   ClientList.get(ClientList.size()-1).add(cad.getUserName());	
+    		   ClientList.get(ClientList.size()-1).add("Not Ready");		
+    		   ClientScores.add(0); 										 
     		   arg1.sendToClient("Success");  
     	   }
     	   catch(IOException e) {
@@ -212,7 +193,8 @@ public class WoFServer extends AbstractServer
     		arg1.sendToClient("Invalid data");   
     	   } catch(IOException e) {
     		   e.printStackTrace();
-    	  }}*/
+    	  }}
+       ////////////////////////////////////////////////////////////////////
     }
     
    else if(arg0 instanceof String) {
@@ -259,7 +241,7 @@ public class WoFServer extends AbstractServer
         	        	toSend = false;
         		}
     		if(toSend) {
-    			this.sendToAllClients(Questions.get(QuestionNumber));
+    			this.sendToAllClients(phrases.get(QuestionNumber));
     			QuestionNumber++;
     		 	}
     		}
@@ -326,9 +308,9 @@ public class WoFServer extends AbstractServer
     	        	toSend = false;
         	}
     	if(toSend) {
-    		if(QuestionNumber < Questions.size()) 
+    		if(QuestionNumber < phrases.size()) 
     			this.sendToAllClients("Move Question");
-    		else if(QuestionNumber >= Questions.size()) 
+    		else if(QuestionNumber >= phrases.size()) 
     			this.sendToAllClients("Move Answer");
     	}}
     }
