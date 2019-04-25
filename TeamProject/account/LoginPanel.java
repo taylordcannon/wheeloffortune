@@ -11,11 +11,12 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginPanel extends JPanel{
 	private JTextField username;
-	private JTextField password;
+	private JPasswordField password;
 	private JLabel errorMsg;
 	private JButton submit;
 	private JButton createAccount;
@@ -34,8 +35,9 @@ public class LoginPanel extends JPanel{
 		return username.getText();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public String getPassword() {
-		return password.getText();
+		return new String(password.getPassword());
 	}
 	
 	public LoginPanel(LoginControl lc) {
@@ -43,7 +45,7 @@ public class LoginPanel extends JPanel{
 		JLabel label = new JLabel("Login", JLabel.CENTER);
 		
 		username = new JTextField(15);
-		password = new JTextField(15);
+		password = new JPasswordField(10);
 		
 		submit = new JButton("Submit");
 		submit.setPreferredSize(new Dimension(20, 20));

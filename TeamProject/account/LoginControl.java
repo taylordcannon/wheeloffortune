@@ -54,7 +54,7 @@ public class LoginControl implements ActionListener {
       CardLayout cl = (CardLayout)container.getLayout();
       cl.show(container, "2");
     }
-    
+    //if(command.contentEquals("Submit")) {
     if(command.contentEquals("Submit") && !(isPressed)) {
     	LoginPanel lp = (LoginPanel)container.getComponent(0);
 	    LoginData ld = new LoginData(lp.getUserName(), lp.getPassword());
