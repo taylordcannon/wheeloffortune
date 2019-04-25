@@ -32,7 +32,7 @@ public class CreateAccountControl implements ActionListener{
 		String password2 = ca.getPassword2();
 		CreateAccountData cad = new CreateAccountData(username, password, password2);
 		
-		if(command == "cancel") {
+		if(command == "Cancel") {
 			CardLayout cl = (CardLayout)container.getLayout();
 			cl.show(container, "1");
 		}else if(command == "Submit") {
@@ -58,14 +58,16 @@ public class CreateAccountControl implements ActionListener{
 						e1.printStackTrace();
 					}
 					System.out.println((String)client.getServerMsg());
-					//if((String)client.getServerMsg() == "Success") {
+					if((String)client.getServerMsg() == "Success") {
 						CardLayout cl = (CardLayout)container.getLayout();
-						cl.show(container, "3");
-					//}else if((String)client.getServerMsg() == "Exists") {
-						//displayError("That account exists");
-					//}else {
-						//displayError("Server Error");
-					//}
+						cl.show(container, "1");
+					}else if((String)client.getServerMsg() == "Exists") {
+						displayError("That account exists");
+					}else {
+						displayError("Server Error");
+						CardLayout cl = (CardLayout)container.getLayout();
+						cl.show(container, "1");
+					}
 				}catch (IOException e2) {
 					e2.printStackTrace();
 				}

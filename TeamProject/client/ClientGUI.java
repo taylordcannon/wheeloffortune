@@ -43,16 +43,19 @@ public class ClientGUI extends JFrame {
 		CreateAccountControl ca = new CreateAccountControl(container, client);
 		PhraseControl pc = new PhraseControl(container, client);
 		EndGameControl egp = new EndGameControl(container, client);
+		Spinner spin = new Spinner(container, client);
 		
 		JPanel view1 = new LoginPanel(lc);
 		JPanel view2 = new CreateAccount(ca); 
 		JPanel view3 = new PhrasePanel(pc); 
 		JPanel view4 = new EndGamePanel(egp); 
+		JPanel view5 = new Spinner(spin, client);
 		
 		container.add(view1, "1");
 		container.add(view2, "2");
 		container.add(view3, "3");
 		container.add(view4, "4");
+		container.add(view5, "5");
 		
 		CardLayout cl = (CardLayout)container.getLayout();
 		cl.show(container, "1");

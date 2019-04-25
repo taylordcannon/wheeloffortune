@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class WoFServer extends AbstractServer
@@ -29,6 +30,7 @@ public class WoFServer extends AbstractServer
   private ArrayList<Integer> ClientScores;					//Tracks clients scores
   private ArrayList<PhraseData> Questions;				//Storage for questions
   private int QuestionNumber;								//Value to track question number
+  Random rand  = new Random();
   
   public WoFServer() throws FileNotFoundException {
     super(8300);
@@ -108,9 +110,11 @@ public class WoFServer extends AbstractServer
   protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {   
     if (arg0 instanceof LoginData) {
        LoginData ld = (LoginData)arg0;
-       String un = ld.getUserName(); String pass = ld.getPassword();
+       String un = ld.getUserName(); 
+       String pass = ld.getPassword();
        ArrayList<String> validUserInfo = database.query("select username, password from player where username = '" + un + "';");
        if(un.equals(validUserInfo.get(0)) && pass.equals(validUserInfo.get(1))) {
+    	   
     	   try {
     		   ClientList.add(new ArrayList<String>());						//Pushes blank arraylist onto 2d arraylist (new client)
     		   ClientList.get(ClientList.size()-1).add(ld.getUserName());	//Sets the user's name to their name in the database
@@ -173,6 +177,8 @@ public class WoFServer extends AbstractServer
         	        	toSend = false;
         		}
     		if(toSend && ClientList.size() >= 2) {
+    			log.append("\nGame Has Started");
+    			System.out.println(ClientList.size());
     		 	this.sendToAllClients("Move Questions");
     			}
     		}
@@ -242,7 +248,9 @@ public class WoFServer extends AbstractServer
         	for(int j=0;j<clientThreadList.length;j++)
         		if (pd.getUserAnswer().equals(pd.getRightAnswer())) 	        	 
 		    		if(arg1.equals((ConnectionToClient)clientThreadList[j])) {
-		    			int toPass = ClientScores.get(j); toPass += 1;
+		    			int n = rand.nextInt(500);
+		    			int toPass = ClientScores.get(j);
+		    			toPass += n;
 		    			ClientScores.set(j, toPass);
 		    	}
 	        for (ArrayList<String> Client : ClientList) 

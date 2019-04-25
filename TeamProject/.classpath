@@ -8,5 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/billi/git/wof/ocsf.jar"/>
 	<classpathentry kind="lib" path="C:/Users/billi/git/wof/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/billi/git/wof/junit-4.13-beta-2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/billi/git/wof/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

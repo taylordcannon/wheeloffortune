@@ -89,8 +89,8 @@ public class PhrasePanel extends JPanel {
 		    
 		   
 			choice1.addActionListener(ps);
-		choice2.addActionListener(ps);
-		choice3.addActionListener(ps);
+		    choice2.addActionListener(ps);
+            choice3.addActionListener(ps);
 		    submit.addActionListener(ps);
 		   
 		
