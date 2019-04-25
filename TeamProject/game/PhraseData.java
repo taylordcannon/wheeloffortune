@@ -1,59 +1,66 @@
 package game;
 
-import account.*;
-import client.*;
-import server.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PhraseData implements Serializable{
-	private String question;
-	private ArrayList<String> answers;
-	private ArrayList<String> questions;
-	private String userAnswer;
-	private ArrayList<String> rightAnswer;
+//houses question, answer, and users choice
 	
-	public PhraseData() {
-		setUserAnswer("");
+	//string for question, string for correct answer, string for useranswer
+	
+	  private String Question;
+	  private ArrayList<String> Answers;
+	  private String UserAnswer;
+	  private String RightAnswer;
+	  
+	  public PhraseData() {
+		  setUserAnswer("");
+		 }
+	  
+	  // Getters for the username and password.
+	  public String getQuestion()
+	  {
+	    return Question;
+	  }
+	  public ArrayList<String> getAnswer()
+	  {
+	    return Answers;
+	  }
+	  public String getUserAnswer()
+	  {
+	    return UserAnswer;
+	  }
+	  public String getRightAnswer()
+	  {
+		  return RightAnswer;
+	  }
+	  
+	  
+	  // Setters for the username and password.
+	  public void setQuestion(String Question)
+	  {
+	    this.Question = Question;
+	  }
+	  public void setAnswers(ArrayList<String> Answer)
+	  {
+	    this.Answers = Answer;
+	  }
+	  public void setUserAnswer(String UserAnswer)
+	  {
+	    this.UserAnswer = UserAnswer;
+	  }
+	  public void setRightAnswer(String RightAnswer)
+	  {
+	    this.RightAnswer = RightAnswer;
+	  }
+	  
+	  // Constructor that initializes the username and password.
+	  public PhraseData(String Question, ArrayList<String> Answer, String UserAnswer, String RightAnswer)
+	  {
+	    setQuestion(Question);
+	    setUserAnswer(UserAnswer);
+	    setAnswers(Answer);
+	    setRightAnswer(RightAnswer);
+	  }
 	}
-	
-	public ArrayList<String> getAnswer(){
-		return answers;
-	}
-	
-	public void setAnswers(ArrayList<String> answers) {
-		this.answers = answers;
-	}
-	
-	public ArrayList<String> getQuestions(){
-		return questions;
-	}
-	
-	public void setQuestions(ArrayList<String> questions) {
-		this.questions = questions;
-	}
-	
-	public String getUserAnswer() {
-		return userAnswer;
-	} 
-	
-	public void setUserAnswer(String userAnswer) {
-		this.userAnswer = userAnswer;
-	}
-	
-	public ArrayList<String> getRightAnswers(){
-		return rightAnswer;
-	}
-	
-	public void setRightAnswers(ArrayList<String> rightAnswer) {
-		this.rightAnswer = rightAnswer;
-	}
-	
-	public PhraseData(ArrayList<String> question, ArrayList<String> answer, String userName, ArrayList<String> rightAnswer){
-		setQuestions(question);
-		setUserAnswer(userAnswer);
-		setAnswers(answer);
-		setRightAnswers(rightAnswer);
-	}
-}
+

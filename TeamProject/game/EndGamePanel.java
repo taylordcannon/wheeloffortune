@@ -1,9 +1,5 @@
 package game;
 
-import account.*;
-import client.*;
-import server.*;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
